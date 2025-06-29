@@ -5,9 +5,9 @@ function useCurrencyInfo(currency) {
 
   useEffect(() => {
     if (!currency) return;
-    fetch(`https://www.floatrates.com/daily/rub.json`)
+    fetch(`https://api.exchangerate-api.com/v4/latest/${currency.toUpperCase()}`)
       .then((res) => res.json())
-      .then((res) => setData(res[currency]))
+      .then((res) => setData(res.rates))
       .catch((err) => {
         setData({});
         console.error("Failed to fetch currency data:", err);
